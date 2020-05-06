@@ -23,3 +23,7 @@ code {
 p {
   margin: 0;
 }
+
+a, a:hover {
+  text-decoration: none;
+}

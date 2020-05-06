@@ -18,5 +18,6 @@ export const LoginStyled = styled.div`
     p {
         color: ${headlineTextColor};
         margin-bottom: 18px;
+        font-size: 20px;
     }
 `
