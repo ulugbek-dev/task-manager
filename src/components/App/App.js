@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AppStyled } from './styled';
 import Login from '../Login/Login';
-import Navbar from '../Navbar/Navbar';
+import Dashboard from '../Dashboard/Dashboard';
 import { Switch, Route } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { useAuthChecker } from '../../hooks/useAuthChecker';
@@ -20,8 +20,11 @@ function App() {
   return (
     <AppStyled>
       <Switch>
-        <Route path="/dashboard" exact component={() => <Navbar />} />
-        <Route path="/login" exact component={() => <Login />} />
+        {auth ? (
+          <Route path="/dashboard" exact component={() => <Dashboard />} />
+        ) : (
+          <Route path="/login" exact component={() => <Login />} />
+        )}
       </Switch>
     </AppStyled>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LoginStyled } from './styled';
 import { Input } from '../../elements/Input';
 import { Button } from '../../elements/Button';
+import { Headline } from '../../elements/Headline';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
@@ -33,7 +34,7 @@ function Login() {
     return (
         <LoginStyled>
             <form>
-                <p>Login</p>
+                <Headline>Login</Headline>
                 <Input 
                     placeholder="Id" 
                     value={id} 
@@ -46,7 +47,7 @@ function Login() {
                     onChange={e => setName(e.target.value)}
                     style={validate && name === '' ? {border: `1px solid red`} : {}}
                 />
-                <Button onClick={e => handleLogin(e)}>Login</Button>
+                <Button fullWidth onClick={e => handleLogin(e)}>Login</Button>
             </form>
         </LoginStyled>
     );

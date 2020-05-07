@@ -3,7 +3,7 @@ import { primaryColor, primaryColorHover } from '../variables';
 
 export const Button = styled.button`
     background: ${primaryColor};
-    width: 100%;
+    width: ${props => props.fullWidth ? '100%' : 'auto'};
     font-size: 14px;
     color: white;
     padding: 11px 16px;

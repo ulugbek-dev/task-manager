@@ -5,8 +5,10 @@ export const LoginStyled = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    opacity: 0;
+    transform: translateX(-50%) translateY(-60%);
     width: calc(100% - 30px);
+    animation: loginAnim 500ms forwards 300ms;
     
     form {
         background: white;
@@ -16,8 +18,13 @@ export const LoginStyled = styled.div`
     }
 
     p {
-        color: ${headlineTextColor};
         margin-bottom: 18px;
-        font-size: 20px;
+    }
+
+    @keyframes loginAnim {
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-50%);
+        }
     }
 `
