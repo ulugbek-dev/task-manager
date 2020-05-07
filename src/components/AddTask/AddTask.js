@@ -13,6 +13,9 @@ function AddTask ({ handleModalClose }) {
     const [task, setTask] = useState('');
     const [validate, setValidate] = useState(false);
 
+    // Add loading status
+    const [loading, setLoading] = useState(false);
+
     // Get tasks & TOKEN from store
     const token = useSelector(state => state.auth.token.token);
     // Setting TOKEN in request Header
@@ -20,14 +23,18 @@ function AddTask ({ handleModalClose }) {
         headers: { Authorization: `Bearer ${token}` }
     };
 
-    // Add new task handler
-    const handleAddTask = () => {
+    // Add new task Button handler
+    const handleAddTask = e => { 
+        e.preventDefault();
         setValidate(true);
+
         if(task !== '')
+            setLoading(true);
             axios.post(`${api}/tasks`, {"name": task}, config)
                 .then(res => {
                     dispatch({ type: 'ADD_TASK', payload: res.data })
-                    console.log(res.data)
+                    setLoading(false);
+                    handleModalClose();
                 })
                 .catch(err => {
                     console.error(err)
@@ -39,13 +46,20 @@ function AddTask ({ handleModalClose }) {
         <AddTaskStyled onClick={handleModalClose}>
             <div className="content" onClick={e => e.stopPropagation()}>
                 <Headline>+ New Task</Headline>
-                <Input 
-                    placeholder="Task Name" 
-                    value={task}
-                    onChange={e => setTask(e.target.value)}
-                    style={validate && task === '' ? {border: `1px solid red`} : {}}
-                />
-                <Button fullWidth onClick={() => handleAddTask()}>+ New Task</Button>
+                <form>
+                    <Input 
+                        placeholder="Task Name" 
+                        value={task}
+                        onChange={e => setTask(e.target.value)}
+                        style={validate && task === '' ? {border: `1px solid red`} : {}}
+                    />
+                    <Button 
+                        fullWidth
+                        loading={loading}
+                        disabled={loading}
+                        onClick={e => handleAddTask(e)}
+                    >+ New Task</Button>
+                </form>
             </div>
         </AddTaskStyled>
     );

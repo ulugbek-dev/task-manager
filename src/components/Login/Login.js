@@ -17,21 +17,27 @@ function Login() {
     const [validate, setValidate] = useState(false);
     const [backendValidation, setBackendValidation] = useState(false);
 
+    // Request Loading status
+    const [loading, setLoading] = useState(false);
+
     // Validation and Login handler
     const handleLogin = e => {
         e.preventDefault();
         setValidate(true);
 
         if(id !== '' && name !== '') {
+            setLoading(true);
             // Login request
             axios.post(`${api_url}/login`, { name: name, apiKey: id })
                 .then(res => {
                     dispatch({ type: 'AUTH', payload: res.data })
                     setBackendValidation(false);
+                    setLoading(false);
                 })
                 .catch(err => {
                     console.error(err);
                     setBackendValidation(true);
+                    setLoading(false);
                 })
         }
     }
@@ -53,7 +59,12 @@ function Login() {
                     onChange={e => setName(e.target.value)}
                     style={validate && name === '' ? {border: `1px solid red`} : {}}
                 />
-                <Button fullWidth onClick={e => handleLogin(e)}>Login</Button>
+                <Button 
+                    fullWidth
+                    disabled={loading}
+                    loading={loading}
+                    onClick={e => handleLogin(e)}
+                >Login</Button>
             </form>
         </LoginStyled>
     );
