@@ -8,8 +8,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import state from './store/actions';
 
-require('dotenv').config();
-
 const store = createStore(state);
 
 ReactDOM.render(
