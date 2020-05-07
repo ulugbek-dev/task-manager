@@ -20,6 +20,15 @@ export const LoginStyled = styled.div`
     p {
         margin-bottom: 18px;
     }
+    
+    .backend-validation {
+        color: red;
+            margin-bottom: 2px;
+            margin-top: -4px;
+            font-size: 14px;
+            text-align: center;
+        }
+    }
 
     @keyframes loginAnim {
         to {

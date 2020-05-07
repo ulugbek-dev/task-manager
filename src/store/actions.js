@@ -13,6 +13,19 @@ export default function state( state = initialState, { type, payload } ) {
                 ...state,
                 auth: null
             }
+        case 'TASKS':
+            return {
+                ...state,
+                tasks: payload.tasks
+            }
+        case 'ADD_TASK':
+            return {
+                ...state,
+                tasks: [
+                    ...state.tasks,
+                    payload
+                ]
+            }
         default:
             return state;
     }

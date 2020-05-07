@@ -5,6 +5,7 @@ import { Headline } from '../../elements/Headline';
 import AddTask from '../AddTask/AddTask';
 
 function EmptyTasks () {
+    // Modal state
     const [modal, setModal] = useState(false);
 
     // Close Modal handler
