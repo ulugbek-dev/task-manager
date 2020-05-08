@@ -13,6 +13,7 @@ export const SearchStyled = styled.div`
     input {
         background: #D9DFEB;
         padding-left: 40px;
+        padding-right: 40px;
         text-align: center;
     }
 `

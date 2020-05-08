@@ -18,6 +18,11 @@ export default function state( state = initialState, { type, payload } ) {
                 ...state,
                 tasks: payload.tasks
             }
+        case 'DASHBOARD':
+            return {
+                ...state,
+                dashboard: payload
+            }
         case 'ADD_TASK':
             return {
                 ...state,

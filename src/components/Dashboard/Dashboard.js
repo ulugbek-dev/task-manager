@@ -3,6 +3,7 @@ import { DashboardStyled } from './styled';
 import Navbar from '../Navbar/Navbar';
 import EmptyTasks from '../EmptyTasks/EmptyTasks';
 import ListTasks from '../ListTasks/ListTasks';
+import TaskCompleted from '../TaskCompleted/TaskCompleted';
 import Search from '../Search/Search';
 import AddTask from '../AddTask/AddTask';
 import { useGet } from '../../hooks/useGet';
@@ -13,11 +14,11 @@ import { Button } from '../../elements/Button';
 function Dashboard () {
     // Fetch & Dispatch tasks
     const getTasks = useGet('/tasks', 'TASKS');
+    const getDashboard = useGet('/dashboard', 'DASHBOARD');
 
     // Get tasks from store
     const tasks = useSelector(state => state.tasks);
-
-    console.log(getTasks, tasks)
+    const dashboard = useSelector(state => state.dashboard);
 
     // Modal state
     const [modal, setModal] = useState(false);
@@ -29,8 +30,11 @@ function Dashboard () {
         <DashboardStyled>
             <Navbar />
 
-            {tasks.length === 0 ? <EmptyTasks /> : (
+            {tasks.length && dashboard.length === 0 ? <EmptyTasks /> : (
                 <>
+                    <div className="info">
+                        <TaskCompleted completed={dashboard.tasksCompleted} total={dashboard.totalTasks} />
+                    </div>
                     <div className="search-container">
                         <Headline center>Tasks</Headline>
                         <Search />

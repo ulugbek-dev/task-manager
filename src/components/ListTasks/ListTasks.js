@@ -60,19 +60,17 @@ function ListTasks ({ tasks }) {
     return (
         <ListTasksStyled>
         {tasks.map((t, i) => (
-            <>
-                <li key={i} className={loading[0] && loading[1] === t._id ? 'loading' : ''}>
-                    <span>
-                        <input type="checkbox" checked={t.completed} onChange={() => handleComplete(t._id, t.name, t.completed)} />
-                        <label className={t.completed ? 'completed' : ''}>{t.name}</label>
-                    </span>
-                    <span>
-                        <Icon icon={faPen} onClick={() => setModal([true, t._id])} />
-                        <Icon icon={faTrash} onClick={() => handleDelete(t._id)} />
-                    </span>
-                </li>
+            <li key={i} className={loading[0] && loading[1] === t._id ? 'loading' : ''}>
+                <span>
+                    <input type="checkbox" checked={t.completed} onChange={() => handleComplete(t._id, t.name, t.completed)} />
+                    <label className={t.completed ? 'completed' : ''}>{t.name}</label>
+                </span>
+                <span>
+                    <Icon icon={faPen} onClick={() => setModal([true, t._id])} />
+                    <Icon icon={faTrash} onClick={() => handleDelete(t._id)} />
+                </span>
                 {modal[0] && modal[1] === t._id && <EditTask handleModalClose={handleModalClose} id={t._id} name={t.name} />  }          
-            </>
+            </li>
         ))}
         </ListTasksStyled>
     );

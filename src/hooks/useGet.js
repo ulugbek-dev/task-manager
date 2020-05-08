@@ -10,6 +10,7 @@ export function useGet (path, type) {
     const [loading, setLoading] = useState(true);
 
     // Get tasks & TOKEN from store
+    const tasks = useSelector(state => state.tasks);
     const token = useSelector(state => state.auth.token.token)
 
     // Setting TOKEN in request Header
@@ -22,7 +23,6 @@ export function useGet (path, type) {
         function fetchApi() {
             axios.get(`${api}${path}`, config)
                 .then(res => {
-                    console.log(res.data)
                     dispatch({ type: type, payload: res.data })
                     setLoading(false);
                 })
@@ -33,7 +33,7 @@ export function useGet (path, type) {
         }
 
         fetchApi();
-    }, [])
+    }, [tasks])
 
     return loading;
 }
