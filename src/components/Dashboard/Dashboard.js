@@ -4,9 +4,11 @@ import Navbar from '../Navbar/Navbar';
 import EmptyTasks from '../EmptyTasks/EmptyTasks';
 import ListTasks from '../ListTasks/ListTasks';
 import TaskCompleted from '../TaskCompleted/TaskCompleted';
+import LatestTasks from '../LatestTasks/LatestTasks';
 import Search from '../Search/Search';
 import AddTask from '../AddTask/AddTask';
 import { useGet } from '../../hooks/useGet';
+import { useUpdate } from '../../hooks/useUpdate';
 import { useSelector } from 'react-redux';
 import { Headline } from '../../elements/Headline';
 import { Button } from '../../elements/Button';
@@ -14,7 +16,7 @@ import { Button } from '../../elements/Button';
 function Dashboard () {
     // Fetch & Dispatch tasks
     const getTasks = useGet('/tasks', 'TASKS');
-    const getDashboard = useGet('/dashboard', 'DASHBOARD');
+    const getDashboard = useUpdate();
 
     // Get tasks from store
     const tasks = useSelector(state => state.tasks);
@@ -26,6 +28,8 @@ function Dashboard () {
     // Close Modal handler
     const handleModalClose = () => setModal(false);
 
+    console.log(dashboard)
+
     return (
         <DashboardStyled>
             <Navbar />
@@ -34,6 +38,7 @@ function Dashboard () {
                 <>
                     <div className="info">
                         <TaskCompleted completed={dashboard.tasksCompleted} total={dashboard.totalTasks} />
+                        <LatestTasks latestTasks={dashboard.latestTasks} />
                     </div>
                     <div className="search-container">
                         <Headline center>Tasks</Headline>

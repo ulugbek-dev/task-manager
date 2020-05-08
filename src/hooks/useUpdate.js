@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-export function useGet (path, type) {
+export function useUpdate () {
     const api = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
 
@@ -10,6 +10,7 @@ export function useGet (path, type) {
     const [loading, setLoading] = useState(true);
 
     // Get tasks & TOKEN from store
+    const tasks = useSelector(state => state.tasks)
     const token = useSelector(state => state.auth.token.token)
 
     // Setting TOKEN in request Header
@@ -20,9 +21,9 @@ export function useGet (path, type) {
     // Fetch tasks from API
     useEffect(() => {
         function fetchApi() {
-            axios.get(`${api}${path}`, config)
+            axios.get(`${api}/dashboard`, config)
                 .then(res => {
-                    dispatch({ type: type, payload: res.data })
+                    dispatch({ type: 'DASHBOARD', payload: res.data })
                     setLoading(false);
                 })
                 .catch(err => {
@@ -32,7 +33,7 @@ export function useGet (path, type) {
         }
 
         fetchApi();
-    }, [])
+    }, [tasks])
 
     return loading;
 }
