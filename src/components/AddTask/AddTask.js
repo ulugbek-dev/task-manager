@@ -32,7 +32,7 @@ function AddTask ({ handleModalClose }) {
             setLoading(true);
             axios.post(`${api}/tasks`, {"name": task}, config)
                 .then(res => {
-                    dispatch({ type: 'ADD_TASK', payload: res.data })
+                    dispatch({ type: 'ADD_TASK', payload: res.data.task })
                     setLoading(false);
                     handleModalClose();
                 })

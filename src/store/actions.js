@@ -26,6 +26,18 @@ export default function state( state = initialState, { type, payload } ) {
                     payload
                 ]
             }
+        case 'DELETE_TASK':
+            return {
+                ...state,
+                tasks: state.tasks.filter(t => t._id !== payload)
+            }
+        case 'COMPLETE_TASK':
+            return {
+                ...state,
+                tasks: state.tasks.map(t => t._id === payload 
+                    ? { ...t, completed: !t.completed } 
+                    : t)
+            }
         default:
             return state;
     }

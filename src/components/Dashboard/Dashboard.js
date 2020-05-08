@@ -17,6 +17,8 @@ function Dashboard () {
     // Get tasks from store
     const tasks = useSelector(state => state.tasks);
 
+    console.log(getTasks, tasks)
+
     // Modal state
     const [modal, setModal] = useState(false);
 
