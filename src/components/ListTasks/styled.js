@@ -20,7 +20,7 @@ export const ListTasksStyled = styled.ul`
 
         input {
             margin-right: 12px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         svg:last-child {

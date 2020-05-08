@@ -38,6 +38,13 @@ export default function state( state = initialState, { type, payload } ) {
                     ? { ...t, completed: !t.completed } 
                     : t)
             }
+        case 'EDIT_TASK':
+            return {
+                ...state,
+                tasks: state.tasks.map(t => t._id === payload.id
+                    ? { ...t, name: payload.task } 
+                    : t)
+            }
         default:
             return state;
     }

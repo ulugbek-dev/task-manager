@@ -4,6 +4,7 @@ import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import EditTask from '../EditTask/EditTask';
 
 function ListTasks ({ tasks }) {
     const api = process.env.REACT_APP_API_URL;
@@ -50,19 +51,28 @@ function ListTasks ({ tasks }) {
             });
     }
 
+    // Modal state
+    const [modal, setModal] = useState([false, null]);
+
+    // Close Modal handler
+    const handleModalClose = () => setModal(false);
+
     return (
         <ListTasksStyled>
         {tasks.map((t, i) => (
-            <li key={i} className={loading[0] && loading[1] === t._id ? 'loading' : ''}>
-                <span>
-                    <input type="checkbox" checked={t.completed} onChange={() => handleComplete(t._id, t.name, t.completed)} />
-                    <label className={t.completed ? 'completed' : ''}>{t.name}</label>
-                </span>
-                <span>
-                    <Icon icon={faPen} />
-                    <Icon icon={faTrash} onClick={() => handleDelete(t._id)} />
-                </span>
-            </li>
+            <>
+                <li key={i} className={loading[0] && loading[1] === t._id ? 'loading' : ''}>
+                    <span>
+                        <input type="checkbox" checked={t.completed} onChange={() => handleComplete(t._id, t.name, t.completed)} />
+                        <label className={t.completed ? 'completed' : ''}>{t.name}</label>
+                    </span>
+                    <span>
+                        <Icon icon={faPen} onClick={() => setModal([true, t._id])} />
+                        <Icon icon={faTrash} onClick={() => handleDelete(t._id)} />
+                    </span>
+                </li>
+                {modal[0] && modal[1] === t._id && <EditTask handleModalClose={handleModalClose} id={t._id} name={t.name} />  }          
+            </>
         ))}
         </ListTasksStyled>
     );
