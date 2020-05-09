@@ -58,7 +58,7 @@ function EditTask ({ handleModalClose, id, name }) {
                         loading={loading}
                         disabled={loading}
                         onClick={e => handleAddTask(e)}
-                    >+ New Task</Button>
+                    >Save</Button>
                 </form>
             </div>
         </EditTaskStyled>

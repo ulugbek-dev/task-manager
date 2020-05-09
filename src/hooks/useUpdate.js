@@ -11,9 +11,9 @@ export function useUpdate () {
 
     // Get tasks & TOKEN from store
     const tasks = useSelector(state => state.tasks)
-    const token = useSelector(state => state.auth.token.token)
-
+    
     // Setting TOKEN in request Header
+    const token = useSelector(state => state.auth.token.token)
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
