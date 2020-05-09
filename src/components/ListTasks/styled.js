@@ -46,21 +46,5 @@ export const ListTasksStyled = styled.ul`
         opacity: .6;
         position: relative;
         pointer-events: none;
-        :before {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 100%;
-            transform: skew(-20deg) translateX(-100px);
-            background: rgb(0,0,0);
-            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 50%, rgba(54,123,174,0) 100%);
-            animation: shining 1800ms infinite 100ms;
-        }
-    }
-
-    @keyframes shining {
-        to {
-            transform: skew(-20deg) translateX(500px);
-        }
     }
 `
