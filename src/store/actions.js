@@ -11,7 +11,8 @@ export default function state( state = initialState, { type, payload } ) {
         case 'LOGOUT':
             return {
                 ...state,
-                auth: null
+                auth: null,
+                searchText: ''
             }
         case 'TASKS':
             return {
@@ -49,6 +50,11 @@ export default function state( state = initialState, { type, payload } ) {
                 tasks: state.tasks.map(t => t._id === payload.id
                     ? { ...t, name: payload.task } 
                     : t)
+            }
+        case 'SEARCH':
+            return {
+                ...state,
+                searchText: payload
             }
         default:
             return state;

@@ -28,8 +28,6 @@ function Dashboard () {
     // Close Modal handler
     const handleModalClose = () => setModal(false);
 
-    console.log(dashboard)
-
     return (
         <DashboardStyled>
             <Navbar />

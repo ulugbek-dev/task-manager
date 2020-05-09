@@ -9,7 +9,6 @@ export const ListTasksStyled = styled.ul`
 
     li {
         display: flex;
-        align-items: center;
         justify-content: space-between;
         padding: 26px 0;
         font-size: 20px;

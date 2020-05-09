@@ -3,14 +3,18 @@ import { LatestTasksStyled } from './styled';
 import { Headline } from '../../elements/Headline';
 import { Card } from '../../elements/Card';
 
-function LatestTasks ({ lastestTasks }) {
+function LatestTasks ({ latestTasks }) {
     return (
         <Card>
             <LatestTasksStyled>
                 <Headline>Latest Created Tasks</Headline>
-                <ul>
-                    {lastestTasks && lastestTasks.map(t => <li>t</li>)}
-                </ul>
+                {latestTasks && (
+                    <ul>
+                        {latestTasks.map((t,i) => <li key={i} className={t.completed ? 'completed' : ''}>
+                            {t.name.length > 35 ? `${t.name.split('').filter((x,i) => i > 34).join('')} ...` : t.name}
+                        </li>)}
+                    </ul>
+                )}
             </LatestTasksStyled>
         </Card>
     );

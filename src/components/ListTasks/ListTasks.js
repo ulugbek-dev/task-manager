@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ListTasksStyled } from './styled';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,18 @@ import EditTask from '../EditTask/EditTask';
 function ListTasks ({ tasks }) {
     const api = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
+
+    // Get search text from store
+    const searchText = useSelector(state => state.searchText);
+    const [taskList, setTaskList] = useState(tasks);
+
+    // Update Task list depends on search text
+    useEffect(() => {
+        if(searchText !== '')
+            setTaskList(() => tasks.filter(t => t.name.includes(searchText)));
+        else
+            setTaskList(tasks);
+    }, [searchText]);
 
     // Loading status
     const [loading, setLoading] = useState([true, null]);
@@ -59,19 +71,19 @@ function ListTasks ({ tasks }) {
 
     return (
         <ListTasksStyled>
-        {tasks.map((t, i) => (
-            <li key={i} className={loading[0] && loading[1] === t._id ? 'loading' : ''}>
-                <span>
-                    <input type="checkbox" checked={t.completed} onChange={() => handleComplete(t._id, t.name, t.completed)} />
-                    <label className={t.completed ? 'completed' : ''}>{t.name}</label>
-                </span>
-                <span>
-                    <Icon icon={faPen} onClick={() => setModal([true, t._id])} />
-                    <Icon icon={faTrash} onClick={() => handleDelete(t._id)} />
-                </span>
-                {modal[0] && modal[1] === t._id && <EditTask handleModalClose={handleModalClose} id={t._id} name={t.name} />  }          
-            </li>
-        ))}
+            {taskList.map((t, i) => (
+                <li key={i} className={loading[0] && loading[1] === t._id ? 'loading' : ''}>
+                    <span>
+                        <input type="checkbox" checked={t.completed} onChange={() => handleComplete(t._id, t.name, t.completed)} />
+                        <label className={t.completed ? 'completed' : ''}>{t.name}</label>
+                    </span>
+                    <span>
+                        <Icon icon={faPen} onClick={() => setModal([true, t._id])} />
+                        <Icon icon={faTrash} onClick={() => handleDelete(t._id)} />
+                    </span>
+                    {modal[0] && modal[1] === t._id && <EditTask handleModalClose={handleModalClose} id={t._id} name={t.name} />  }          
+                </li>
+            ))}
         </ListTasksStyled>
     );
 }
