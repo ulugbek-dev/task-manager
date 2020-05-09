@@ -9,3 +9,7 @@ export const textColor = '#8F9EA2';
 
 // Box Shadow
 export const shadow = '0px 3px 6px #00000029';
+
+// Skeleton
+export const skeletonBg = 'white';
+export const skeletonText = '#e6e8ed';

@@ -5,5 +5,9 @@ export const DashboardStyled = styled.div`
         display: flex;
         flex-direction: column;
         margin: 15px;
+
+        .content {
+            padding-top: 100px;
+        }
     }
 `

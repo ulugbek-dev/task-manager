@@ -10,6 +10,8 @@ export const NavbarStyled = styled.nav`
     height: 72px;
     padding: 0 15px;
     box-shadow: ${shadow};
+    position: fixed;
+    z-index: 10;
 
     div {
         display: flex;

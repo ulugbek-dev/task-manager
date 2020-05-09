@@ -20,7 +20,7 @@ function ListTasks ({ tasks }) {
             setTaskList(() => tasks.filter(t => t.name.includes(searchText)));
         else
             setTaskList(tasks);
-    }, [searchText]);
+    }, [searchText, tasks]);
 
     // Loading status
     const [loading, setLoading] = useState([true, null]);

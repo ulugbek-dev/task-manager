@@ -3,6 +3,6 @@ export const initialState = {
         ? JSON.parse(sessionStorage.getItem('task-manager'))
         : null,
     tasks: [],
-    dashboard: [],
+    dashboard: null,
     searchText: ''
 };

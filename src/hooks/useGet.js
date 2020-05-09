@@ -22,7 +22,7 @@ export function useGet (path, type) {
         function fetchApi() {
             axios.get(`${api}${path}`, config)
                 .then(res => {
-                    dispatch({ type: type, payload: res.data })
+                    dispatch({ type: type, payload: res.data });
                     setLoading(false);
                 })
                 .catch(err => {
