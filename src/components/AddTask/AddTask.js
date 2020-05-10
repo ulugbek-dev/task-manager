@@ -53,7 +53,7 @@ function AddTask ({ handleModalClose }) {
                     />
                     <Button 
                         fullWidth
-                        loading={loading}
+                        loading={loading ? 1 : 0}
                         disabled={loading}
                         onClick={e => handleAddTask(e)}
                     >+ New Task</Button>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useBearer } from './useBearer';
 
 export function useGet (path, type) {
     const api = process.env.REACT_APP_API_URL;
@@ -9,13 +10,8 @@ export function useGet (path, type) {
     // Loading status
     const [loading, setLoading] = useState(true);
 
-    // Get tasks & TOKEN from store
-    const token = useSelector(state => state.auth.token.token)
-
-    // Setting TOKEN in request Header
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
+    // Get user TOKEN
+    const config = useBearer();
 
     // Fetch tasks from API
     useEffect(() => {

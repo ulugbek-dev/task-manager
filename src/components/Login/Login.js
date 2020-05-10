@@ -62,7 +62,7 @@ function Login() {
                 <Button 
                     fullWidth
                     disabled={loading}
-                    loading={loading}
+                    loading={loading ? 1 : 0}
                     onClick={e => handleLogin(e)}
                 >Login</Button>
             </form>

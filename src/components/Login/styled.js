@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { headlineTextColor, shadow } from '../../variables';
+import { shadow } from '../../variables';
 
 export const LoginStyled = styled.div`
     position: absolute;

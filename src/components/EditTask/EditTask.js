@@ -4,7 +4,8 @@ import { Input } from '../../elements/Input';
 import { Button } from '../../elements/Button';
 import { Headline } from '../../elements/Headline';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useBearer } from '../../hooks/useBearer';
 
 function EditTask ({ handleModalClose, id, name }) {
     const api = process.env.REACT_APP_API_URL;
@@ -51,7 +52,7 @@ function EditTask ({ handleModalClose, id, name }) {
                     />
                     <Button 
                         fullWidth
-                        loading={loading}
+                        loading={loading ? 1 : 0}
                         disabled={loading}
                         onClick={e => handleAddTask(e)}
                     >Save</Button>

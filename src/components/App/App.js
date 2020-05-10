@@ -16,7 +16,9 @@ function App() {
       history.push('/dashboard');
     else
       history.push('/login');
-  }, [auth]);
+
+    console.log('test')
+  }, [auth, history]);
 
   return (
     <AppStyled>
