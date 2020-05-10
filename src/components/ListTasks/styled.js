@@ -47,4 +47,9 @@ export const ListTasksStyled = styled.ul`
         position: relative;
         pointer-events: none;
     }
+
+
+    @media (min-width: 576px) {
+        border-radius: 12px;
+    }
 `

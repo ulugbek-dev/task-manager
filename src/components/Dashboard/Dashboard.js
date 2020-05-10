@@ -38,8 +38,10 @@ function Dashboard () {
         </div>
         <div className="search-container">
             <Headline center>Tasks</Headline>
-            <Search />
-            <Button fullWidth onClick={() => setModal(true)}>+ New Task</Button>
+            <div className="search-inner-container">
+                <Search />
+                <Button fullWidth onClick={() => setModal(true)}>+ New Task</Button>
+            </div>
         </div>
         <ListTasks tasks={tasks} />
     </>;
@@ -52,9 +54,8 @@ function Dashboard () {
                 {(getTasks && getDashboard) ? <Skeleton /> : tasks.length > 0 && dashboard !== null 
                     ? showDashboard()
                     : <EmptyTasks />}
+                {modal && <AddTask handleModalClose={handleModalClose} />  }  
             </Wrapper>
-
-            {modal && <AddTask handleModalClose={handleModalClose} />  }  
         </DashboardStyled>
     );
 }

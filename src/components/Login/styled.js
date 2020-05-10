@@ -36,4 +36,8 @@ export const LoginStyled = styled.div`
             transform: translateX(-50%) translateY(-50%);
         }
     }
+
+    @media (min-width: 576px) {
+        max-width: 300px;
+    }
 `

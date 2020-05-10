@@ -12,12 +12,14 @@ function EmptyTasks () {
     const handleModalClose = () => setModal(false);
 
     return (
-        <EmptyTasksStyled>
-            <Headline>You have no task.</Headline>
-            <Button onClick={() => setModal(true)}>+ New Task</Button>
+        <>
+            <EmptyTasksStyled>
+                <Headline>You have no task.</Headline>
+                <Button onClick={() => setModal(true)}>+ New Task</Button>
 
+            </EmptyTasksStyled>
             {modal && <AddTask handleModalClose={handleModalClose} />  }          
-        </EmptyTasksStyled>
+        </>
     );
 }
 

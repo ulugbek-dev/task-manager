@@ -14,4 +14,13 @@ export const EmptyTasksStyled = styled.div`
     button {
         margin-top: 20px;
     }
+
+    @media (min-width: 576px) {
+        max-width: 300px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 12px;
+    }
 `

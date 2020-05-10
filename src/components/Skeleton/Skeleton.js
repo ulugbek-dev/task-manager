@@ -21,10 +21,20 @@ function Skeleton() {
             </div>
             <div className="search-box">
                 <div className="headline"></div>
-                <div className="input"></div>
-                <div className="input"></div>
+                <div className="search-inner-box">
+                    <div className="input"></div>
+                    <div className="input"></div>
+                </div>
             </div>
             <div className="tasks">
+                <div className="item">
+                    <div className="task"></div>
+                    <div className="icon"></div>
+                </div>
+                <div className="item">
+                    <div className="task"></div>
+                    <div className="icon"></div>
+                </div>
                 <div className="item">
                     <div className="task"></div>
                     <div className="icon"></div>

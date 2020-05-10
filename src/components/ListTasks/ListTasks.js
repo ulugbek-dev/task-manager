@@ -17,7 +17,7 @@ function ListTasks ({ tasks }) {
     // Update Task list depends on search text
     useEffect(() => {
         if(searchText !== '')
-            setTaskList(() => tasks.filter(t => t.name.includes(searchText)));
+            setTaskList(() => tasks.filter(t => t.name.toLowerCase().includes(searchText.toLowerCase())));
         else
             setTaskList(tasks);
     }, [searchText, tasks]);

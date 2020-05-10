@@ -70,6 +70,13 @@ export const SkeletonStyled = styled.div`
         width: 100%;
         padding: 15px;
         margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        
+        .search-inner-box {
+            display: flex;
+            flex-direction: column;
+        }
         
         .headline {
             width: 55px;
@@ -128,7 +135,48 @@ export const SkeletonStyled = styled.div`
 
     @keyframes skeleton {
         to {
-            transform: skew(-20deg) translateX(800px);
+            transform: skew(-20deg) translateX(1000px);
+        }
+    }
+
+    @media (min-width: 992px) {
+        .completed, .latest {
+            margin-right: 24px;
+        }
+        .search-box {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+            
+            .search-inner-box {
+                flex-direction: row;
+                width: 40%;
+                justify-content: space-between;
+
+                .input {
+                    width: 60%;
+                    margin-left: 12px;
+                    :last-child {
+                        width: 40%;
+                    }
+                }
+            }
+            .headline {
+                width: 100px;
+                margin: 0;
+            }
+        }
+        .tasks {
+            margin-top: 20px;
+
+            .item {
+                margin: 15px 0;
+                
+                :not(:last-child) {
+                    margin-bottom: 30px;
+                }
+            }
         }
     }
 `

@@ -16,4 +16,10 @@ export const SearchStyled = styled.div`
         padding-right: 40px;
         text-align: center;
     }
+
+    @media (min-width: 576px) {
+        input {
+            text-align: left;
+        }
+    }
 `
