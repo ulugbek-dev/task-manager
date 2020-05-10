@@ -46,4 +46,14 @@ export const EditTaskStyled = styled.div`
             transform: translateX(-50%) translateY(0);
         }
     }
+
+    @media (min-width: 576px) {
+        .content {
+            max-width: 300px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 `

@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
 import { AddTaskStyled } from './styled';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useBearer } from '../../hooks/useBearer';
 import { Input } from '../../elements/Input';
 import { Button } from '../../elements/Button';
 import { Headline } from '../../elements/Headline';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
 
 function AddTask ({ handleModalClose }) {
+    // Get use Bearer/Token
+    const config = useBearer();
+    
     const api = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
 
+    // Task input text & validation status
     const [task, setTask] = useState('');
     const [validate, setValidate] = useState(false);
 
-    // Add loading status
+    // Add button loading status
     const [loading, setLoading] = useState(false);
-
-    // Get tasks & TOKEN from store
-    const token = useSelector(state => state.auth.token.token);
-    // Setting TOKEN in request Header
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
 
     // Add new task Button handler
     const handleAddTask = e => { 

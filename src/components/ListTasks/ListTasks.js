@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ListTasksStyled } from './styled';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
 import EditTask from '../EditTask/EditTask';
+import { useBearer } from '../../hooks/useBearer';
 
 function ListTasks ({ tasks }) {
     const api = process.env.REACT_APP_API_URL;
@@ -14,7 +15,7 @@ function ListTasks ({ tasks }) {
     const searchText = useSelector(state => state.searchText);
     const [taskList, setTaskList] = useState(tasks);
 
-    // Update Task list depends on search text
+    // Update Task list depending on search text
     useEffect(() => {
         if(searchText !== '')
             setTaskList(() => tasks.filter(t => t.name.toLowerCase().includes(searchText.toLowerCase())));
@@ -22,17 +23,17 @@ function ListTasks ({ tasks }) {
             setTaskList(tasks);
     }, [searchText, tasks]);
 
-    // Loading status
+    // Tasks Loading status
     const [loading, setLoading] = useState([true, null]);
 
-    // Get tasks & TOKEN from store
-    const token = useSelector(state => state.auth.token.token);
-    // Setting TOKEN in request Header
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
+    // Modal state & close modal handler
+    const [modal, setModal] = useState([false, null]);
+    const handleModalClose = () => setModal(false);
 
-    // Delete task
+    // Get user bearer
+    const config = useBearer();
+
+    // Delete task request
     const handleDelete = id => {
         setLoading([true, id]);
         axios.delete(`${api}/tasks/${id}`, config)
@@ -46,7 +47,7 @@ function ListTasks ({ tasks }) {
             });
     }
 
-    // Complete / incomplete task
+    // Complete / incomplete task request
     const handleComplete = (id, name, completed) => {
         setLoading([true, id]);
         axios.put(`${api}/tasks/${id}`, { 
@@ -62,12 +63,6 @@ function ListTasks ({ tasks }) {
                 setLoading([false, id]);
             });
     }
-
-    // Modal state
-    const [modal, setModal] = useState([false, null]);
-
-    // Close Modal handler
-    const handleModalClose = () => setModal(false);
 
     return (
         <ListTasksStyled>

@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { AppStyled } from './styled';
-import Login from '../Login/Login';
-import Dashboard from '../Dashboard/Dashboard';
 import { Switch, Route } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { useAuthChecker } from '../../hooks/useAuthChecker';
+import Login from '../Login/Login';
+import Dashboard from '../Dashboard/Dashboard';
 
 function App() {
   const auth = useAuthChecker();
   const history = useHistory();
 
+  // Change path depending on user auth
   useEffect(() => {
     if(auth)
       history.push('/dashboard');

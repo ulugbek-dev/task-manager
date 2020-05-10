@@ -10,18 +10,15 @@ function EditTask ({ handleModalClose, id, name }) {
     const api = process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
 
+    // Task text & validation status
     const [task, setTask] = useState(name);
     const [validate, setValidate] = useState(false);
 
-    // Add loading status
+    // Save button loading status
     const [loading, setLoading] = useState(false);
 
-    // Get tasks & TOKEN from store
-    const token = useSelector(state => state.auth.token.token);
-    // Setting TOKEN in request Header
-    const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
+    // Get use Bearer/Token
+    const config = useBearer();
 
     // Add new task Button handler
     const handleAddTask = e => { 
@@ -40,7 +37,6 @@ function EditTask ({ handleModalClose, id, name }) {
                     console.error(err)
                 })
     }
-
 
     return (
         <EditTaskStyled onClick={handleModalClose}>
